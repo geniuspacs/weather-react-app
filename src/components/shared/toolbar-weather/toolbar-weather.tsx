@@ -1,5 +1,5 @@
 import { AutoComplete } from 'primereact/autocomplete';
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Toolbar } from 'primereact/toolbar';
 import { Image } from 'primereact/image';
 import DashboardContext from '../../../contexts/dashboard.context';
@@ -28,10 +28,9 @@ const ToolbarWeather = () => {
 
     const getHintData = (event: {query: string}) => {
         if(event.query.length > 3) {
-            // TODO: Meter en environment
-            fetch(`https://weatherapi-com.p.rapidapi.com/search.json?q=${event.query}`, {
+            fetch(`${import.meta.env.VITE_API_URL}/search.json?q=${event.query}`, {
                 headers: {
-                    'X-RapidAPI-Key': '2958f49cd2msh3f1e8ba71d48a75p193ea9jsn6629d4455884',
+                    'X-RapidAPI-Key': import.meta.env.VITE_API_KEY,
                     'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
                 }
             })
